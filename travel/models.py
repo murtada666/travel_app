@@ -62,7 +62,7 @@ class Agency(models.Model):
     class Meta:
         verbose_name_plural = "Agencies"
         
-        
+    something = models.CharField(max_length=200, default="2")    
     name = models.CharField(max_length=100) 
     logo = models.ImageField('image', upload_to='company/', default="", null=True, blank= True)
     
