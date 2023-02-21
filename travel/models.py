@@ -18,7 +18,7 @@ class City(models.Model):
     class Meta:
         verbose_name_plural = 'Cities'
     
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, default=0)
     name = models.CharField(max_length=100)
     
     
@@ -28,7 +28,7 @@ class City(models.Model):
  
     
 class Trip(models.Model):
-    agency = models.ForeignKey("Agency", on_delete=models.CASCADE, default=0)
+    agency = models.ForeignKey("Agency", on_delete=models.CASCADE, default=0, related_name="trips")
     name = models.CharField(max_length=100)
     destination = models.ForeignKey(Country, on_delete=models.CASCADE)
     departure_date = models.DateField()
@@ -46,6 +46,9 @@ class Traveler(models.Model):
     phone = models.IntegerField(null=True, blank=True)
     age = models.IntegerField(null=False, blank=False)
     image = models.ImageField('image', upload_to='traveler/', default="", null=True, blank= True)
+    
+    def __str__(self):
+        return f"({self.first_name}  {self.last_name})"
 
 
 

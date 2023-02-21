@@ -5,6 +5,7 @@ from travel.models import Agency
 from travel.schemas import AgencyOut
 
 
+
 agency_router = Router(tags=["agencies"])
 
 
@@ -17,4 +18,11 @@ def all_(request):
     else:
         return agencies
     
-  
+
+@agency_router.get("/agency_trips")
+def all_trips(request, agency_name: str):
+    agency = Agency.objects.filter(name=agency_name).all()
+    
+    trips = agency.trips.all()
+    
+    return trips
