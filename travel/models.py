@@ -4,27 +4,28 @@ from django.db import models
 
 
 
-class City(models.Model):
-    class Meta:
-        verbose_name_plural = 'Cities'
-        
-    name = models.CharField(max_length=100)
-    
-    
-    def __str__(self):
-        return self.name
-    
-
 class Country(models.Model):
     class Meta:
         verbose_name_plural = "Coutries"
         
-    city = models.ForeignKey(City, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     
     def __str__(self):
         return self.name
     
+    
+class City(models.Model):
+    class Meta:
+        verbose_name_plural = 'Cities'
+    
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    
+    
+    def __str__(self):
+        return self.name
+    
+ 
     
 class Trip(models.Model):
     agency = models.ForeignKey("Agency", on_delete=models.CASCADE, default=0)
