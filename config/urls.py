@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
+from django.conf.urls import include
 from ninja import NinjaAPI
+
 
 from travel.api.trip import trip_router
 from travel.api.booking import booking_router
@@ -35,4 +38,5 @@ api.add_router("/agency_router", agency_router)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/", api.urls),
+    path('accounts/', include('allauth.urls')),
 ]
