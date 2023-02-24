@@ -8,8 +8,10 @@ class AgencyOut(Schema):
     logo: str
     
     
-class TripOut(Schema):
+class TripsOut(Schema):
     id: int
+    agency: AgencyOut
     name: str
-    departure_date: int
-    return_date: int
+    price: Decimal
+    image: str
+    

@@ -2,7 +2,7 @@ from typing import List
 from ninja import Router
 
 from travel.models import Agency, Trip
-from travel.schemas import AgencyOut, TripOut
+from travel.schemas import AgencyOut, TripsOut
 
 
 
@@ -19,10 +19,14 @@ def all_(request):
         return agencies
     
 
-@agency_router.get("/agency_trips", response=TripOut)
+@agency_router.get("/agency_trips", response=TripsOut)
 def all_trips(request, agency_name: str):
     
+    agency = Agency.objects.get(name=agency_name)
     
+    trips = agency.trips.all()
+#------------------------------------------------------------------------
+
     # trips = Agency.objects.get(name=agency_name).trips.all()
     
     
@@ -33,11 +37,8 @@ def all_trips(request, agency_name: str):
     # print(Agency.objects.get(name=agency_name))
     
 #------------------------------------------------------------------------
-
-    agency = Agency.objects.get(name=agency_name)
     
-    trips = agency.trips.all()
+    # trips = agency.trip_set.all()
+    # print(trips)
     
-    # # trips = agency.trip_set.all()
-    # # print(trips)
     return trips
