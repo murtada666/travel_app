@@ -2,6 +2,10 @@ from decimal import Decimal
 from ninja import Schema
 
 
+class MessageOut(Schema):
+    message: str
+
+
 class AgencyOut(Schema):
     id: int
     name: str
@@ -31,6 +35,7 @@ class DestinationTripsOut(Schema):
     
     
 class DestinationName(Schema):
+    id: int
     name:str
 class TripDetailsOut(Schema):
     id: int
