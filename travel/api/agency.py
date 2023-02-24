@@ -23,7 +23,7 @@ def all_(request):
 def all_trips(request, agency_name: str):
     
     
-    trips = Agency.objects.get(name=agency_name).trips.all()
+    # trips = Agency.objects.get(name=agency_name).trips.all()
     
     
 #------------------------------------------------------------------------
@@ -34,9 +34,9 @@ def all_trips(request, agency_name: str):
     
 #------------------------------------------------------------------------
 
-    # agency = Agency.objects.get(name=agency_name)
+    agency = Agency.objects.get(name=agency_name)
     
-    # trips = agency.trips.all()
+    trips = agency.trips.all()
     
     # # trips = agency.trip_set.all()
     # # print(trips)
