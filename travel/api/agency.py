@@ -19,26 +19,12 @@ def all_(request):
         return agencies
     
 
-@agency_router.get("/agency_trips", response=TripsOut)
-def all_trips(request, agency_name: str):
+@agency_router.get("/agency_trips", response=List[TripsOut])
+def all_trips(request, id: int):
     
-    agency = Agency.objects.get(name=agency_name)
+
+    agency = Agency.objects.get(id=id)
     
     trips = agency.trips.all()
-#------------------------------------------------------------------------
 
-    # trips = Agency.objects.get(name=agency_name).trips.all()
-    
-    
-#------------------------------------------------------------------------
-    
-    # trips = Trip.objects.filter(agency=Agency.objects.get(name=agency_name))
-    
-    # print(Agency.objects.get(name=agency_name))
-    
-#------------------------------------------------------------------------
-    
-    # trips = agency.trip_set.all()
-    # print(trips)
-    
     return trips

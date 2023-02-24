@@ -38,10 +38,19 @@ class Agency(models.Model):
         return f"({self.name})"
     
     
+class Destination(models.Model):
+    name = models.CharField(max_length=100)   
+    image = models.ImageField('image', upload_to='destination/', null=True, blank= True)
+ 
+    
+    def __str__(self):
+        return f"({self.name})"
+
+
 class Trip(models.Model):
     agency = models.ForeignKey(Agency, on_delete=models.CASCADE, null=True, blank=True, related_name='trips')
     name = models.CharField(max_length=100)
-    destination = models.ForeignKey(Country, on_delete=models.CASCADE)
+    destination = models.ForeignKey(Destination, on_delete=models.CASCADE, related_name='trips')
     departure_date = models.DateField()
     return_date = models.DateField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
