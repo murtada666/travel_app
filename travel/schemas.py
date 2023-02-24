@@ -46,3 +46,11 @@ class TripDetailsOut(Schema):
     description: str
     
     
+class TravelerIn(Schema):
+    first_name: str
+    last_name: str
+    phone: int 
+class BookingIn(Schema):
+    traveler: TravelerIn
+    
+    

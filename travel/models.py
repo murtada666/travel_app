@@ -66,7 +66,7 @@ class Traveler(models.Model):
     first_name = models.CharField(max_length=100, null=False, blank=False)
     last_name = models.CharField(max_length=100, null=False, blank=False)
     phone = models.IntegerField(null=True, blank=True)
-    age = models.IntegerField(null=False, blank=False)
+    age = models.IntegerField(null=True, blank=True)
     image = models.ImageField('image', upload_to='traveler/', null=True, blank= True)
     
     def __str__(self):
