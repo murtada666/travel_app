@@ -27,3 +27,17 @@ class DestinationTripsOut(Schema):
     image: str
     name: str
     price: Decimal
+    
+    
+    
+class DestinationName(Schema):
+    name:str
+class TripDetailsOut(Schema):
+    id: int
+    image: str
+    price: Decimal
+    destination: DestinationName
+    # departure_date: str
+    description: str
+    
+    
