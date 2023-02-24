@@ -15,5 +15,4 @@ def booking(request, booking_in: BookingIn):
         last_name = booking_in.traveler.last_name,
         phone = booking_in.traveler.phone,
     )
-    
     return {"message": "Booking DONE"}
