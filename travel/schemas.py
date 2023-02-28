@@ -1,6 +1,7 @@
 from decimal import Decimal
 from ninja import Schema
-
+import datetime
+from typing import Any
 
 class MessageOut(Schema):
     message: str
@@ -42,14 +43,17 @@ class TripDetailsOut(Schema):
     image: str
     price: Decimal
     destination: DestinationName
-    # departure_date: str
+    departure_date: Any
     description: str
     
     
 class TravelerIn(Schema):
     first_name: str
     last_name: str
-    phone: int 
+    phone: int
+    age:int
+    
+    
 class BookingIn(Schema):
     traveler: TravelerIn
     

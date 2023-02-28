@@ -1,0 +1,7 @@
+env
+__pycache__
+migrations
+db.sqlite3
+destination
+traveler
+trip

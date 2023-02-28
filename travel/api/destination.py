@@ -3,6 +3,9 @@ from ninja import Router
 
 from travel.models import Destination
 from travel.schemas import DestinationOut, DestinationTripsOut
+from django.shortcuts import get_object_or_404
+
+
 
 destination_router = Router(tags=["Destination"])
 
@@ -23,11 +26,10 @@ def destination_trips(request):
 @destination_router.get("destination_trips/", response=List[DestinationTripsOut])
 def destinations_trips(request, id: int):
     
-    destination = Destination.objects.get(id=id)
+    destination = get_object_or_404(Destination, id=id)
     
     trips = destination.trips.all()
         
     if not trips:
         return "NO trips were FOUND"
-    else:
-        return trips
+    return trips

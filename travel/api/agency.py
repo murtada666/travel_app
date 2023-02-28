@@ -5,6 +5,8 @@ from rest_framework.exceptions import NotFound
 
 from travel.models import Agency, Trip
 from travel.schemas import AgencyOut, TripsOut
+from django.shortcuts import get_object_or_404
+
 
 
 
@@ -17,36 +19,18 @@ def all_(request):
     
     if not agencies:
         return "NO agency was FOUND"
-        # return {"message": "NO agency was FOUND"}
-
-    else:
-        return agencies
+    return agencies
     
 
 @agency_router.get("/agency_trips", response=List[TripsOut])
 def all_trips(request, id: int):
     
-    agency = Agency.objects.get(id=id)
-    if not agency:
-        raise NotFound("The agency that you are calling is not FOUND")
-    else:
-        trips = agency.trips.all()
-        
-        if not trips:
-            return "there are NO trips"
-        return trips
-
-
-
-
-
-    # try:
-    #     agency = Agency.objects.get(id=id)
-    #     trips = agency.trips.all()
-        
-    #     if not trips:
-    #         return {"message": " there are NO trips"}
-    #     return trips
+    agency = get_object_or_404(Agency, id=id)
     
-    # except Exception:
-    #     return {"message": "The agency that you are calling is not FOUND"} 
+    trips = agency.trips.all()
+    
+    if not trips:
+        return "there are NO trips"
+    return trips
+    
+  

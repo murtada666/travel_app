@@ -34,6 +34,7 @@ class Agency(models.Model):
     name = models.CharField(max_length=100) 
     logo = models.ImageField('image', upload_to='company/', null=True, blank= True)
     
+    
     def __str__(self):
         return f"({self.name})"
     
