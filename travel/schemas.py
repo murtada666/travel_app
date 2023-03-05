@@ -21,13 +21,13 @@ class TripsOut(Schema):
     image: str
     
     
-class DestinationOut(Schema):
+class CityOut(Schema):
     id: int
     name: str
     image: str
     
     
-class DestinationTripsOut(Schema):
+class CityTripsOut(Schema):
     id: int
     image: str
     name: str
@@ -35,14 +35,14 @@ class DestinationTripsOut(Schema):
     
     
     
-class DestinationName(Schema):
+class CityName(Schema):
     id: int
     name:str
 class TripDetailsOut(Schema):
     id: int
     image: str
     price: Decimal
-    destination: DestinationName
+    city: CityName
     departure_date: Any
     description: str
     
@@ -50,7 +50,7 @@ class TripDetailsOut(Schema):
 class TravelerIn(Schema):
     first_name: str
     last_name: str
-    phone: int
+    phone: str
     age:int
     
     
