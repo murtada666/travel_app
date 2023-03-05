@@ -1,7 +1,10 @@
-env
-__pycache__
-migrations
-db.sqlite3
-destination
-traveler
-trip
+/env
+
+/travel/__pycache__
+/db.sqlite3
+/destination
+/traveler
+/trip
+/config/__pycache__/
+travel/api/__pycache__
+travel/migrations/
