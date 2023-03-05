@@ -20,6 +20,8 @@ class City(models.Model):
     
     country = models.ForeignKey(Country, on_delete=models.CASCADE, default=0)
     name = models.CharField(max_length=100)
+    image = models.ImageField('image', upload_to='destination/', null=True, blank= True)
+
     
     
     def __str__(self):
@@ -39,19 +41,19 @@ class Agency(models.Model):
         return f"({self.name})"
     
     
-class Destination(models.Model):
-    name = models.CharField(max_length=100)   
-    image = models.ImageField('image', upload_to='destination/', null=True, blank= True)
+# class Destination(models.Model):
+#     name = models.CharField(max_length=100)   
+#     image = models.ImageField('image', upload_to='destination/', null=True, blank= True)
  
     
-    def __str__(self):
-        return f"({self.name})"
+#     def __str__(self):
+#         return f"({self.name})"
 
 
 class Trip(models.Model):
     agency = models.ForeignKey(Agency, on_delete=models.CASCADE, null=True, blank=True, related_name='trips')
     name = models.CharField(max_length=100)
-    destination = models.ForeignKey(Destination, on_delete=models.CASCADE, related_name='trips')
+    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='trips')
     departure_date = models.DateField()
     return_date = models.DateField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -60,13 +62,13 @@ class Trip(models.Model):
 
     
     def __str__(self):
-        return f"{self.destination} ({self.departure_date} to {self.return_date})"
+        return f"{self.city} ({self.departure_date} to {self.return_date})"
     
     
 class Traveler(models.Model):
     first_name = models.CharField(max_length=100, null=False, blank=False)
     last_name = models.CharField(max_length=100, null=False, blank=False)
-    phone = models.IntegerField(null=True, blank=True)
+    phone = models.CharField(max_length=56, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True)
     image = models.ImageField('image', upload_to='traveler/', null=True, blank= True)
     
