@@ -12,9 +12,9 @@ def booking(request, booking_in: TravelerIn):
 
     Traveler.objects.create(
         first_name = booking_in.first_name,
-        last_name = booking_in.last_name,   
+        last_name = booking_in.last_name,
         phone = booking_in.phone,
         age = booking_in.age,
     )
-    
+
     return 200, {"message": "Booking DONE"}
